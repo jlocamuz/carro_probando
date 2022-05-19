@@ -31,4 +31,5 @@ class Migration(migrations.Migration):
                 ('distributor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_products.distributor')),
             ],
         ),
+
     ]

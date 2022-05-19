@@ -72,4 +72,5 @@ class Migration(migrations.Migration):
                 ('sc', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_sc.shoppingcart')),
             ],
         ),
+   
     ]

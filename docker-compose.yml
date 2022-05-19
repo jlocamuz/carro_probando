@@ -39,7 +39,7 @@ services:
     volumes:
       - .:/code_products
     ports:
-      - "9999:8000"
+      - "9000:8000"
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
@@ -58,3 +58,15 @@ services:
     ports:
       - "8000:8000"
 
+  frontend:
+    build:
+      context: .
+      dockerfile: react-dockerfile
+    command: bash -c "npm install && npm start"
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - ./ecommerce-frontend/src:/ecommerce-frontend/src:cached
+    depends_on:
+      - products
+      - shopping_cart
