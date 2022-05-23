@@ -4,7 +4,7 @@ import "./login.css";
 import axios from "axios";
 
 
-const Login = ({setClient, setUser, isSubmitted, setIsSubmitted }) =>{
+const Login = ({setClient, setUser,user, isSubmitted, setIsSubmitted }) =>{
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const { data } = useFetch('http://127.0.0.1:8000/user/')
@@ -36,22 +36,24 @@ const Login = ({setClient, setUser, isSubmitted, setIsSubmitted }) =>{
       } else {
         setIsSubmitted(true);
         setUser(userData)
-        //setClient(database.find((user) => user.name === uname.value))
-        let client = clients.find((client) => client.client === userData.id)
-        setClient(client)
-        axios.post('http://127.0.0.1:8000/shopping_cart/', {
-          sc_total_price:0.0,
-          client_detail:client.id
-        })
-        .then(function (response) {
-          console.log(response);
+        if (!user.is_admin){
+          let client = clients.find((client) => client.client === userData.id)
+          setClient(client)
+          axios.post('http://127.0.0.1:8000/shopping_cart/', {
+            sc_total_price:0.0,
+            client_detail:client.id
+          })
+          .then(function (response) {
+            console.log(response);
 
-          
-        })
-        .catch(function (error) {
-          console.log(error);
-  });
-      }
+            
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }          
+        }
+
     } else {
       // name not found
       setErrorMessages({ name: "uname", message: errors.uname });

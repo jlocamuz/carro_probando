@@ -1,14 +1,13 @@
 import Navbar from './Navbar';
 import Home from './Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ProductDetails from './ProductItem';
+import ProductItem from './product/ProductItem';
 import Login from './Login';
 import { useState} from 'react';
-import CartDetails from './cart/CartDetails';
 import MakeSale from './MakeSale';
-import SaleDetails from './SaleDetails';
-import SaleItems from './SaleItems';
-import { useHistory } from "react-router-dom"
+import SaleList from './sale/SaleList';
+import CartList from './cart/CartList';
+import UserList from './UserList';
 
 function App() {
   const [user, setUser] = useState('');
@@ -16,35 +15,36 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   console.log(isSubmitted)
   if(isSubmitted){
+    console.log(user)
+    console.log(user.is_admin)
+    console.log(client)
     return (
       <Router>
         <div>
           <Navbar user={user} isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted}/>
-          <div className="content">
+          <div className='content'>
             <Switch>
               <Route exact path="/">
-                <h2 className='blog-preview'> bienvenido usuario {user.name} </h2>
-                <p> tu id es: {user.id} </p>
-                <p> tu email es: {user.email}</p>
+                <h2> bienvenido usuario {user.name} </h2>
                 {user.is_admin &&  <div> usted es admin</div>} 
-
                 <Home user={user} client={client}/>
               </Route>
               <Route exact path="/products/:id">
-                <ProductDetails />
+                <ProductItem />
               </Route>
               <Route exact path="/carro/">
-                <CartDetails client={client}/>
+                <CartList client={client}/>
               </Route>
-              <Route exact path="/sale/">
+              <Route exact path="/make_sale/">
                 <MakeSale client={client}></MakeSale>
               </Route>
-              <Route exact path='/sale_details/'>
-                <SaleDetails user={user} client={client}></SaleDetails>
+              <Route exact path='/sales/'>
+                <SaleList user={user} client={client}/>
               </Route>
-              <Route exact path='/sale_items/:sale'>
-                <SaleItems ></SaleItems>
+              <Route exact path='/users/'>
+                <UserList/>
               </Route>
+
             </Switch>
           </div>
         </div>
@@ -52,6 +52,7 @@ function App() {
   } else {
     return(<Login setClient={setClient} 
                   setUser={setUser} 
+                  user={user}
                   isSubmitted={isSubmitted} 
                   setIsSubmitted={setIsSubmitted} >
            </Login>)

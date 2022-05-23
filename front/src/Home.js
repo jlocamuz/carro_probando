@@ -1,4 +1,4 @@
-import ProductList from "./ProductList";
+import ProductList from "./product/ProductList";
 import useFetch from "./useFetch";
 
 const Home = ({user, client}) => {
@@ -8,7 +8,7 @@ const Home = ({user, client}) => {
     <div className="home">
       { error && <div>{ error }</div> }
       { isPending && <div>Loading...</div> }
-      { products && <ProductList  user={user} client={client} products={products.filter(product => product.product_qt > 0)} /> }
+      { products && <ProductList  user={user} client={client} products={products.filter((product) => product.product_qt > 0)} /> }
     </div>
   );
 }

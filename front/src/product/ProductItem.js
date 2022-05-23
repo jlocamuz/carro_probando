@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import useFetch from "./useFetch";
+import useFetch from "../useFetch";
 
 const ProductItem = () => {
   const { id } = useParams();
   const { data: product, error, isPending } = useFetch('http://0.0.0.0:9000/products/' + id + '/');
 
   return (
-    <div className="blog-details">
+    <div className="blog-detail">
       { isPending && <div>Loading...</div> }
       { error && <div>{ error }</div> }
       { product && (

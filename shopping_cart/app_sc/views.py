@@ -28,7 +28,6 @@ class SaleViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        print(serializer.data['id'])
         client_detail = request.data['client_detail']
         sc = ShoppingCart.objects.filter(client_detail=client_detail).first()
         cd = CartDetail.objects.filter(sc=sc)

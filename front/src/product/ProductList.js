@@ -1,13 +1,23 @@
 import { Link } from "react-router-dom";
 import { Formik, Field, Form } from 'formik';
 import axios from "axios";
-import useFetch from "./useFetch";
+import { useEffect, useState } from "react";
+
 const ProductList = ({user, client, products}) => {
-  console.log(client)
-  const { data: sc } = useFetch('http://0.0.0.0:8000/shopping_cart/'+client.id+"/")
-  console.log(sc)
+
+  const [sc, setSc] = useState(null)
+
+  useEffect(() => {
+    if(client){
+      axios.get('http://0.0.0.0:8000/shopping_cart/'+client.id+"/").then(resp => {
+          setSc(resp.data)
+        });
+    }},[]);
+
+
+
   return (    
-    <div className="blog-list">
+    <div>
       {products.map(product => (
         <div className="blog-preview" key={product.id} >
           <Link to={`/products/${product.id}`}>
@@ -43,13 +53,17 @@ const ProductList = ({user, client, products}) => {
           >
             <Form>
               <label htmlFor="cantidad">cantidad</label>
-              <Field id="cantidad" name="cantidad" type="number"/>
+              <Field
+                id="cantidad" 
+                name="cantidad" 
+                type="number"
+                />
               <button type="submit" >Agregar al carrito</button>
             </Form>
           </Formik>            
           }
-
         </div>
+        
       ))}
     </div>
   );

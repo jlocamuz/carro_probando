@@ -7,7 +7,7 @@ const Navbar = ({user, setIsSubmitted, isSubmitted}) => {
     <nav className="navbar">
       <h1>MiniMarket</h1>
       <div className="links">
-        <Link to="/sale_details/">
+        <Link to="/sales/">
           <button> Sales</button>
         </Link>
         <Link to="/">
@@ -18,6 +18,12 @@ const Navbar = ({user, setIsSubmitted, isSubmitted}) => {
         <Link to="/carro/">
           <button> Carro </button>
         </Link>          
+        }
+
+        {user.is_admin && 
+        <Link to="/users/">
+          <button> users </button>
+        </Link>  
         }
 
         <button onClick={() => {setIsSubmitted(!isSubmitted)}}>log out</button>
