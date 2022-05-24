@@ -2,6 +2,16 @@ version: "3"
    
 services:
 
+  proxy:
+    image: nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app-nginx.conf:/etc/nginx/conf.d/app-nginx.conf
+    depends_on:
+      - products
+      - shopping_cart
+
   db:
     image: postgres
     container_name: db
