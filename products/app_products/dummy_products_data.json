@@ -1,0 +1,69 @@
+{
+	"rows": [
+    {
+        "product_name": "rodesia",
+        "product_description": "oblea de chocolate",
+        "product_price": 100.0,
+        "product_qt": 200,
+        "distributor": "terrabusi"
+    },
+    {
+        "product_name": "alfajor",
+        "product_description": "alfajor negro",
+        "product_price": 200.0,
+        "product_qt": 100,
+        "distributor": "entre dos"
+    },
+    {
+        "product_name": "fideos rulitos",
+        "product_description": "fideos tirabuzones",
+        "product_price": 80.0,
+        "product_qt": 60,
+        "distributor": "terrabusi"
+    },
+    {
+        "product_name": "galletas",
+        "product_description": "galletas surtidas",
+        "product_price": 100.0,
+        "product_qt": 50,
+        "distributor": "terrabusi"
+    },
+    {
+        "product_name": "conito",
+        "product_description": "conito de dulce de leche",
+        "product_price": 120.0,
+        "product_qt": 60,
+        "distributor": "entre dos"
+    },
+    {
+        "product_name": "dulce",
+        "product_description": "dulce de batata",
+        "product_price": 60.0,
+        "product_qt": 100,
+        "distributor": "arcor"
+    },
+    {
+        "product_name": "caramelos",
+        "product_description": "caramelos masticables",
+        "product_price": 100.0,
+        "product_qt": 0,
+        "distributor": "arcor"
+    },
+    {
+        "product_name": "chupetin",
+        "product_description": "chupetin con chicle",
+        "product_price": 30.0,
+        "product_qt": 100,
+        "distributor": "arcor"
+    },
+    {
+        "id": 9,
+        "product_name": "leche",
+        "product_description": "leche descremada",
+        "product_price": 150.0,
+        "product_qt": 50,
+        "distributor": "sancor"
+    }
+]
+        
+}

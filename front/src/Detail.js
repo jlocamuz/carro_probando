@@ -9,21 +9,28 @@ const Detail = ({ detail }) => {
     useEffect(()=>{
         axios.get('http://127.0.0.1:9000/products/'+detail.product+'/').then(resp => {
             setProduct(resp.data)
-    })}, []);
+    }).catch(function (error) {
+        console.log(error)
+            });              
+    }, []);
 
     return(
-        <div>
-            {
-                product && 
+        <div className="blog-detail">
+            <h2>cart detail id: {detail.id}</h2> 
 
-            <div className="blog-detail" >
-               <h2>cart detail id: {detail.id}</h2> 
-               <h2>product: {product.product_name}</h2>
-               <p>quantity: {detail.product_quantity}</p>
-               <p>${product.product_price} </p>
-            </div>
-            }
-            
+
+               {
+                product && 
+                <div>
+                    <h2>product: {product.product_name}</h2>
+                    <p>${product.product_price} </p>                  
+                </div>
+
+                }
+                {!product &&
+                    <p>se elimino el producto de la base de datos</p>
+                }
+             <p>quantity: {detail.product_quantity}</p>
         </div>
     );
 }

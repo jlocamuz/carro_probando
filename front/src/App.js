@@ -8,6 +8,8 @@ import MakeSale from './MakeSale';
 import SaleList from './sale/SaleList';
 import CartList from './cart/CartList';
 import UserList from './UserList';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CreateProduct from './product/CreateProduct';
 
 function App() {
   const [user, setUser] = useState('');
@@ -30,7 +32,7 @@ function App() {
                 <Home user={user} client={client}/>
               </Route>
               <Route exact path="/products/:id">
-                <ProductItem />
+                <ProductItem user={user}/>
               </Route>
               <Route exact path="/carro/">
                 <CartList client={client}/>
@@ -43,6 +45,9 @@ function App() {
               </Route>
               <Route exact path='/users/'>
                 <UserList/>
+              </Route>
+              <Route exact path='/create_product/'>
+                <CreateProduct/>
               </Route>
 
             </Switch>

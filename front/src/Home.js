@@ -1,5 +1,7 @@
+import CreateProduct from "./product/CreateProduct";
 import ProductList from "./product/ProductList";
 import useFetch from "./useFetch";
+
 
 const Home = ({user, client}) => {
   const { error, isPending, data: products } = useFetch('http://0.0.0.0:9000/products/')
@@ -9,6 +11,7 @@ const Home = ({user, client}) => {
       { error && <div>{ error }</div> }
       { isPending && <div>Loading...</div> }
       { products && <ProductList  user={user} client={client} products={products.filter((product) => product.product_qt > 0)} /> }
+    
     </div>
   );
 }

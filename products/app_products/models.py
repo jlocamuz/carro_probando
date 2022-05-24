@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Distributor(models.Model):
-    distributor_name = models.CharField(max_length=50, unique=True)
+    distributor_name = models.CharField(max_length=50)
     distributor_description = models.CharField(max_length=200)
     
     def __str__(self):
@@ -11,7 +11,7 @@ class Distributor(models.Model):
 
 class Product(models.Model):
     distributor = models.ForeignKey(Distributor, on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=50, unique=True)
+    product_name = models.CharField(max_length=50)
     product_description = models.CharField(max_length=200)
     product_price = models.FloatField(max_length=50)
     product_qt = models.IntegerField(default=0)

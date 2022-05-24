@@ -8,6 +8,27 @@ const CartList = ({client}) => {
     const [cartDetails, setCartDetails] = useState('');
     const [sc, setSc] = useState('');
 
+    const restar_stock = (cartDetails) => {
+        cartDetails.map(
+            cartDetail => {
+                axios.get('http://127.0.0.1:9000/products/'+cartDetail.product+'/')
+                .then(resp => {
+                    console.log(resp)
+                    console.log('restando stock... ', resp.data.product_name)
+                    axios.patch('http://127.0.0.1:9000/products/'+cartDetail.product+'/',
+                        {
+                            product_qt: (resp.data.product_qt - cartDetail.product_quantity)
+                        }).then(resp => console.log(resp))                            
+
+                    })
+
+            }
+        )
+    };
+
+
+
+
     function cargarDatos(){
         console.log('cargando datos')
         axios.get('http://127.0.0.1:8000/cart_detail/').then(resp => {
@@ -47,7 +68,7 @@ const CartList = ({client}) => {
                 cartDetails.filter(cartDetail => cartDetail.sc === sc.id).map(
                     cartDetail => (
                         <div className="blog-preview" key={cartDetail.id}>
-                            <Detail detail={cartDetail} />
+                            <Detail eliminarCartDetail={eliminarCartDetail} detail={cartDetail} />
                             <button 
                                 onClick={() => 
                                 {eliminarCartDetail(cartDetail)}}>
@@ -65,7 +86,7 @@ const CartList = ({client}) => {
                 {cartDetails.length > 0 && 
 
                     <Link to='/make_sale/'>
-                        <button> 
+                        <button onClick={() => restar_stock(cartDetails)}> 
                             Realizar compra
                         </button>            
                     </Link>

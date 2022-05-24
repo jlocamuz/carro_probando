@@ -1,0 +1,24 @@
+
+{
+	"rows": [
+		{
+			"distributor_name": "arcor",
+            "distributor_description": "marca de comida"
+		},
+		{
+			"distributor_name": "sancor",
+            "distributor_description": "marca de lacteos"
+		},
+		{
+			"distributor_name":"entre dos",
+			"distributor_description":"marca de comida mendocina"
+		},
+		{
+			"distributor_name":"terrabusi",
+			"distributor_description":"marca de alimentos"
+		}
+		
+		
+		]
+        
+}
