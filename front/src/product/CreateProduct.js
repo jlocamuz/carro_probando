@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { Formik, Field, Form } from 'formik';
-import axios from 'axios';
 import useFetch from '../useFetch';
-import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const CreateProduct = () => {
-
-    const history = useHistory()
-    const [message, setMessage] = useState('')
-    return (
-    <div>
-      <h1 >Agregar Producto</h1>
-      <div className='login-form'>
-        <Formik
-          initialValues={{
-            product_name: '',
-            product_description: '',
-            product_price: 0,
-            product_qt: 0,
-            distributor: 0
-          }}
-
+  const { data: distributors, error, isPending } = useFetch('http://0.0.0.0:9000/distributors/');
+  const [message, setMessage] = useState('');
+  
+  return(
+  <div>
+    { distributors && 
+    <div className='login-form'>
+    <h1>CreateProduct</h1>
+    <Formik
+      initialValues={{
+        product_name: '',
+        product_description: '',
+        product_price: 0,
+        product_qt: 0,
+        distributor: ''
+      }}
           onSubmit={async (values) => {
             await new Promise((r) => setTimeout(r, 500));
             alert(JSON.stringify(values, null, 2));
@@ -33,8 +33,9 @@ const CreateProduct = () => {
               
                     
 
-              }).then(
-                setMessage('se creo tu producto'),
+              }).then( resp => {
+                console.log(resp)
+                setMessage('se creo tu producto')}
               )
               .catch(function (error) {
                 if(error.response.status == 404){
@@ -45,8 +46,9 @@ const CreateProduct = () => {
                 }
             });              
               }}
-        >
-          <Form className='form'>
+    >
+      {({ values }) => (
+        <Form className='form'>
             <label htmlFor="product_name">product_name</label>
             <Field
               className='input-container'
@@ -79,19 +81,25 @@ const CreateProduct = () => {
                />
             <label htmlFor="distributor">distributor name</label>
 
-            <Field 
-              className='input-container'
-              id="distributor" 
-              name="distributor" 
-              placeholder="distributor"
-               />
-            <p className='error'>{message}</p>
-            <button type='submit'> Agregar producto </button>
-          </Form>
-        </Formik>      
-      </div>
-    </div>
-    );
-}
+          <div >
+            {
+              distributors.map(distributor =>
+            <div key={distributor.distributor_name}>
+              <Field type="radio" name="distributor" value={distributor.id} />
+              {distributor.distributor_name}
+            </div>              
+              )
+            }
+            <div>Picked: {values.distributor}</div>
+          </div>
+          <p className='error'>{message}</p>
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
+
+    </div>}
+  </div>)
+};
  
 export default CreateProduct;
