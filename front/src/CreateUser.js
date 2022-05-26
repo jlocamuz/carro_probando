@@ -6,7 +6,7 @@ import useFetch from './useFetch';
 const CreateUser = () => {
   const { data: users, error, isPending } = useFetch('http://0.0.0.0:8000/user/');
   const [message, setMessage] = useState('');
-  const [id, setId] = useState(100);
+  const [id, setId] = useState(2);
 
 
   function createClient(id){

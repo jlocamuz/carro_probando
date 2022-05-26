@@ -36,7 +36,8 @@ const Login = ({setClient, setUser,user, isSubmitted, setIsSubmitted }) =>{
       } else {
         setIsSubmitted(true);
         setUser(userData)
-        if (!user.is_admin){
+        console.log(user)
+        if (!userData.is_admin){
           let client = clients.find((client) => client.client === userData.id)
           setClient(client)
           axios.post('http://127.0.0.1:8000/shopping_cart/', {

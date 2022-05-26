@@ -1,43 +1,22 @@
 
 {
 	"rows": 
-        [{"id":1,
+        [{"id":100  ,
           "password":"kala59104",
           "last_login":"2022-05-24T02:06:22.688955Z",
           "name":"jlocamuz",
           "email":"jlocamuz@gmail.com",
           "is_active":true,
           "is_admin":true},
-          
-          {"id":2,
-          "password":"jaled123",
-          "last_login":"2022-05-13T21:48:13Z",
-          "name":"martina00",
-          "email":"martidemi@gmail.com",
+
+          {"id":101,
+          "password":"um2022",
+          "last_login":"2022-05-24T02:06:22.688955Z",
+          "name":"profe",
+          "email":"profe@gmail.com",
           "is_active":true,
-          "is_admin":false},
+          "is_admin":true}
+
           
-          {"id":3,
-          "password":"pollofrito",
-          "last_login":"2022-05-13T21:50:03Z",
-          "name":"Cecily70",
-          "email":"cecily@gmail.com",
-          "is_active":true,
-          "is_admin":false},
-          
-          {"id":4,
-          "password":"pato123",
-          "last_login":"2022-05-13T21:50:16Z",
-          "name":"rolocamuz",
-          "email":"rosariolocamuz@gmail.com",
-          "is_active":true,"is_admin":true},
-          
-          {"id":5,
-          "password":"kala123",
-          "last_login":"2022-05-13T21:50:16Z",
-          "name":"claudita",
-          "email":"claudia@gmail.com",
-          "is_active":true,
-          "is_admin":false}]
-        
+        ]
 }
