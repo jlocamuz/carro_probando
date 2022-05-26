@@ -5,11 +5,23 @@ const UserList = () => {
 
     const [users, setUsers] = useState(null);
 
-    useEffect(() => {
-        axios.get('http://0.0.0.0:8000/user/').then(resp => {
+    function cargarDatos(){
+       axios.get('http://0.0.0.0:8000/user/').then(resp => {
             console.log(resp.data)
             setUsers(resp.data)
-        });
+        });   
+    }
+
+    function eliminarUser(user){
+        axios.delete('http://127.0.0.1:8000/user/'+user.id+'/')
+            .then( resp => console.log(resp)).then(() => {cargarDatos()})
+         
+        }
+
+
+
+    useEffect(() => {
+      cargarDatos();
     },[]);
     
     return(
@@ -29,6 +41,11 @@ const UserList = () => {
                  
                                 </div>
                             }
+                            <button 
+                                onClick={() => 
+                                {eliminarUser(user)}}>
+                                eliminar 
+                            </button>     
                        </div>
                    )
                )    
@@ -37,5 +54,5 @@ const UserList = () => {
         </div>
     );
 }
- 
+
 export default UserList;

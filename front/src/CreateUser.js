@@ -6,7 +6,28 @@ import useFetch from './useFetch';
 const CreateUser = () => {
   const { data: users, error, isPending } = useFetch('http://0.0.0.0:8000/user/');
   const [message, setMessage] = useState('');
-  
+  const [id, setId] = useState(100);
+
+
+  function createClient(id){
+    console.log('creating client')
+    axios.post('http://127.0.0.1:8000/client/', {
+        client_address: 'address',
+        client_phone: 0,
+        client: id
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
+
+
+
+
   return(
   <div>
     { users && 
@@ -14,6 +35,7 @@ const CreateUser = () => {
     <h1>CreateUser</h1>
     <Formik
       initialValues={{
+    id: id,
 		password: "",
 		name: "",
 		email: "",
@@ -23,6 +45,7 @@ const CreateUser = () => {
             await new Promise((r) => setTimeout(r, 500));
             alert(JSON.stringify(values, null, 2));
             axios.post('http://127.0.0.1:8000/user/', {
+                id:id,
                 password: values.password,
                 name: values.name,
                 email: values.email,
@@ -32,7 +55,13 @@ const CreateUser = () => {
 
               }).then( resp => {
                 console.log(resp)
-                setMessage('se creo tu usuario')}
+                setMessage('se creo tu usuario')
+                setId(id+1)
+                if(!resp.data.is_admin){
+                  createClient(resp.data.id)
+                }
+                
+                }
               )
               .catch(function (error) {
                 if(error.response.status == 400){
