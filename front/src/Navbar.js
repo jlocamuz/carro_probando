@@ -27,9 +27,18 @@ const Navbar = ({user, setIsSubmitted, isSubmitted}) => {
         }
 
         {user.is_admin &&
-        <Link to="/create_product/">
-          <button> + product </button>
-        </Link>
+        
+        <>
+          <Link to="/create_product/">
+            <button> + product </button>
+          </Link>     
+          <Link to="/create_user/">
+            <button> + user </button>
+          </Link>   
+        </>
+ 
+        
+
         } 
 
         <button onClick={() => {setIsSubmitted(!isSubmitted)}}>log out</button>
